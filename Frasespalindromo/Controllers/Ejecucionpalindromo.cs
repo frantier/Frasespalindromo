@@ -24,31 +24,36 @@ namespace Frasespalindromo.Controllers
         [HttpGet]
         public IActionResult PalindromoResultado(string guardar)
         {
+
+            // Definicion de variables//
+
             var P = new Palindromo();
             P.palindromo = guardar;
 
             var PFinal = string.Empty;
-            var Pcontar = guardar;
+            var Pcontador = guardar;
 
-            int i = Pcontar.Length;
+            int i = Pcontador.Length;
 
             var PalindrFinal = "";
 
+            //Este es el ciclo en el cual se le establecio un contador, ponga las letras sin espacio e identifique si es un palindrome//
+
             for (int j = i - 1; j >= 0; j--)
             {
-                PFinal = PFinal + Pcontar[j];
+                PFinal = PFinal + Pcontador[j];
             }
-            if (PFinal.ToLower().Replace(" ", string.Empty) == Pcontar.ToLower().Replace(" ", string.Empty))
+            if (PFinal.ToLower().Replace(" ", string.Empty) == Pcontador.ToLower().Replace(" ", string.Empty))
             {
-                PalindrFinal = (Pcontar + " es palindrome");
+                PalindrFinal = (Pcontador + " es palindrome");
             }
             else
             {
-                PalindrFinal = (Pcontar + " no es palindrome");
+                PalindrFinal = (Pcontador + " no es palindrome");
             }
 
-            int Semi = Pcontar.Length - Pcontar.Replace(" ", string.Empty).Count() + 1;
-            var ResultadoInvert = ("La palabra ingresada: " + PalindrFinal.ToLower() + " y su invertido es: " + PFinal.ToLower() + "El numero de palabras es: " + Semi);
+            int palabrasespacio = Pcontador.Length - Pcontador.Replace(" ", string.Empty).Count() + 1;
+            var ResultadoInvert = ("La palabra ingresada: " + PalindrFinal.ToLower() + " y su invertido es: " + PFinal.ToLower() + "El numero de palabras es: " + palabrasespacio);
             return Ok(ResultadoInvert.ToLower());
         }
     }
